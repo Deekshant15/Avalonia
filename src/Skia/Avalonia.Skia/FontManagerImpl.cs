@@ -98,8 +98,13 @@ namespace Avalonia.Skia
         public IGlyphTypeface CreateGlyphTypeface(Typeface typeface)
         {
             SKTypeface? skTypeface = null;
-
-            if (typeface.FontFamily.Key is null)
+            
+            if(typeface == null){
+            
+                // Fallback to the default typeface and styles instead.
+                skTypeface = SKTypeface.Default;
+            }
+            else if (typeface.FontFamily.Key is null)
             {
                 var defaultName = SKTypeface.Default.FamilyName;
 
